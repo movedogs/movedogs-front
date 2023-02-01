@@ -1,0 +1,40 @@
+.package-thumb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background: #f3f3f3;
+  border-radius: 10px;
+  width: 290px;
+  height: 74px;
+  overflow: hidden;
+  margin-top: 16px;
+  > .tag {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 15px;
+    background: #222429;
+  }
+  > .text-container {
+    display: flex;
+    flex-direction: column;
+    color: #111111;
+    font-size: 16px;
+    margin-left: 32px;
+    > .title {
+      font-family: "appleSDH";
+    }
+    > .version {
+      font-family: "appleSDL";
+    }
+  }
+  > .right-arrow {
+    background-image: url("../../assets/expand-down.png");
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    margin-right: 25px;
+  }
+}

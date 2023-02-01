@@ -1,41 +1,18 @@
 import "./App.css";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-
-const markdown = `A paragraph with *emphasis* and **strong importance**.
-
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-* Lists
-* [ ] todo
-* [x] done
-
-A table:
-
-| *a* | *b* |
-| - | - |
-| 1 | 2 |
-`;
-
-const markdown2 = `- First item
-- Second item
-- Third item
-    - Indented item
-    - Indented item
-- Fourth item`;
+import "./App.scss";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./footer/Footer";
+import MainPage from "./components/pages/main-page/MainPage";
 
 function App() {
   return (
     <div className="App">
-      <div>
-        <ReactMarkdown># Hello, *World*!</ReactMarkdown>
-        <ReactMarkdown>This text is ___really important___.</ReactMarkdown>
-        <ReactMarkdown
-          children={markdown}
-          remarkPlugins={[remarkGfm]}
-        ></ReactMarkdown>
-        <ReactMarkdown>{markdown2}</ReactMarkdown>
-      </div>
+      <Routes>
+        <Route path="" element={<MainPage />} />
+        <Route path="/:package" element={<div />} />
+        <Route path="/search-result" element={<div />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

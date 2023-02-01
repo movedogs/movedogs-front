@@ -1,0 +1,30 @@
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 640px;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #222429;
+  border-radius: 4px;
+  > .expand-down {
+    background-image: url("../../assets/expand-down.png");
+    min-width: 24px;
+    height: 24px;
+    background-size: cover;
+  }
+  > input {
+    width: 100%;
+    font-family: "appleSDH";
+    font-size: 16px;
+    color: #000000;
+  }
+  > button {
+    min-width: 30px;
+    height: 30px;
+    background-image: url("../../assets/search.png");
+    background-size: cover;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+}

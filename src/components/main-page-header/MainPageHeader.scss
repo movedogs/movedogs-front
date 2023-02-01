@@ -1,0 +1,50 @@
+.main-page-header {
+  display: flex;
+  width: calc(100% - 28%);
+  min-height: 320px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 14%;
+
+  > .logo-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 21px;
+    margin-bottom: 78px;
+    > .main-header-logo {
+      width: 89px;
+      height: 50px;
+      background-size: cover;
+      background-image: url("../../assets/main-header-logo.png");
+    }
+    > button {
+      align-items: center;
+      justify-content: center;
+      width: 139px;
+      height: 48px;
+      background: #ffffff;
+      border: 1px solid #222429;
+      font-size: 16px;
+      color: rgba(34, 36, 41, 1);
+      font-family: "appleSDH";
+      > i {
+        background-image: url("../../assets/icon-github.png");
+        width: 24px;
+        height: 24px;
+        background-size: cover;
+        margin-left: 5px;
+      }
+    }
+  }
+  .search-title {
+    font-family: "appleSDH";
+    font-size: 22px;
+    color: #ffffff;
+    width: 640px;
+    text-align: left;
+    margin-bottom: 19px;
+  }
+}
