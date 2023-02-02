@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./PackageThumb.scss";
 
 interface Props {
@@ -6,7 +7,10 @@ interface Props {
 }
 
 const PackageThumb = ({ title, version }: Props) => {
-  const onClick = () => {};
+  const navigate = useNavigate();
+  const onClick = () => {
+    navigate("/django");
+  };
   return (
     <div className="package-thumb" onClick={onClick}>
       <div className="tag" />

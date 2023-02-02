@@ -1,0 +1,68 @@
+.search-result-thumb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(75% - 56px);
+  padding: 0 24px 0 32px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  margin-top: 26px;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  > .tag {
+    position: absolute;
+    width: 17px;
+    height: 100%;
+    background-color: #2c3131;
+    left: 0;
+  }
+  > .left {
+    display: flex;
+    flex-direction: column;
+    > .title {
+      margin-top: 14px;
+      font-size: 32px;
+      font-family: "appleSDH";
+    }
+    > .version {
+      font-size: 18px;
+      font-family: "appleSDL";
+    }
+    > .description {
+      font-size: 16px;
+      font-family: "appleSDL";
+      margin-top: 11px;
+    }
+    > .hash-list {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 9px;
+      > span {
+        font-family: "appleSDH";
+        font-size: 16px;
+        margin-right: 36px;
+      }
+    }
+  }
+  > .right {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    > span {
+      margin-top: 32px;
+      font-size: 16px;
+      font-family: "appleSDL";
+      margin-right: 54px;
+    }
+    > i {
+      width: 24px;
+      height: 24px;
+      background-image: url("../../assets/expand-down.png");
+      background-size: cover;
+      align-self: center;
+    }
+  }
+}

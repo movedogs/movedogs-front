@@ -1,0 +1,46 @@
+.search-result-index {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 41px 0 44px;
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #222429;
+    border-radius: 8px;
+    margin: 0 14px;
+    &.left-button {
+      &::after {
+        content: "";
+        background-image: url("../../assets/left-arrow-white.png");
+        width: 24px;
+        height: 24px;
+        background-size: cover;
+      }
+    }
+    &.right-button {
+      &::after {
+        content: "";
+        background-image: url("../../assets/right-arrow-white.png");
+        width: 24px;
+        height: 24px;
+        background-size: cover;
+      }
+    }
+  }
+  > .index {
+    font-size: 16px;
+    font-family: "appleSDL";
+    cursor: pointer;
+    &.selected {
+      font-family: "appleSDH";
+    }
+
+    &:not(:last-of-type) {
+      margin-right: 11px;
+    }
+  }
+}
