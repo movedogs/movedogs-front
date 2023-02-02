@@ -1,0 +1,18 @@
+.github-signin-button {
+  align-items: center;
+  justify-content: center;
+  width: 139px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #222429;
+  font-size: 16px;
+  color: rgba(34, 36, 41, 1);
+  font-family: "appleSDH";
+  > i {
+    background-image: url("../../assets/icon-github.png");
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    margin-left: 5px;
+  }
+}

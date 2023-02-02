@@ -4,6 +4,7 @@
   position: relative;
   width: 100%;
   overflow-y: auto;
+  color: #111111;
 }
 
 button,
@@ -20,6 +21,9 @@ input[type="reset"] {
   cursor: inherit;
   outline: inherit;
   -moz-appearance: textfield;
+}
+button {
+  cursor: pointer;
 }
 
 .markdown-container {

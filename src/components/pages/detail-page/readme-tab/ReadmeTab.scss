@@ -1,0 +1,81 @@
+.readme-tab {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75%;
+  > .readme-area {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 354px);
+    height: 844px;
+    background: #f3f3f3;
+    border-radius: 10px;
+  }
+  > .module-info-area {
+    display: flex;
+    flex-direction: column;
+    width: 256px;
+    height: 808px;
+    background: #f3f3f3;
+    border-radius: 10px;
+    padding: 18px 32px;
+    > .title {
+      font-family: "appleSDH";
+      font-size: 28px;
+      &:not(:first-of-type) {
+        margin-top: 33px;
+        margin-bottom: 12px;
+      }
+    }
+    > .info {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+      > i {
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+        margin-right: 12px;
+        &.calender {
+          background-image: url("../../../../assets/calender.png");
+        }
+        &.license {
+          background-image: url("../../../../assets/license.png");
+        }
+        &.aptos {
+          background-image: url("../../../../assets/aptos.png");
+          margin-right: 3px;
+        }
+        &.github {
+          background-image: url("../../../../assets/github.png");
+          margin-right: 3px;
+        }
+      }
+      > span {
+        font-size: 16px;
+        font-family: "appleSDL";
+        &.underline {
+          text-decoration-line: underline;
+        }
+      }
+    }
+    > .install-guide {
+      font-family: "appleSDL";
+      font-size: 16px;
+      line-height: 22px;
+    }
+    > .guide-container {
+      display: flex;
+      align-items: center;
+
+      width: calc(100% - 9px);
+      height: 48px;
+      background: #ffffff;
+      padding-left: 9px;
+
+      font-size: 16px;
+      font-family: "appleSDH";
+      margin-top: 6px;
+    }
+  }
+}

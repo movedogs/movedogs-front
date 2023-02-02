@@ -1,3 +1,4 @@
+import GithubSigninButton from "../github-signin-button/GithubSigninButton";
 import Search from "../search/Search";
 import "./MainPageHeader.scss";
 
@@ -6,10 +7,7 @@ const MainPageHeader = () => {
     <div className="main-page-header">
       <div className="logo-container">
         <i className="main-header-logo" />
-        <button>
-          <span>Log in with</span>
-          <i />
-        </button>
+        <GithubSigninButton />
       </div>
       <span className="search-title">Move is everywhere</span>
       <Search />
