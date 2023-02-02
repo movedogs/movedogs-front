@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IModule } from "../../const";
+import { hashtagList, IModule } from "../../const";
 import { getTimeSince } from "../../utii";
 import "./SearchResultThumb.scss";
 
@@ -9,7 +9,6 @@ interface Props {
 
 const SearchResultThumb = ({ module }: Props) => {
   const navigate = useNavigate();
-  const hashtagList = ["io", "network", "socket"];
   return (
     <div
       className="search-result-thumb"

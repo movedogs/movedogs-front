@@ -41,9 +41,7 @@ const SearchResultPage = () => {
   useEffect(() => {
     searchResult(keyword ?? "").then((res) => updateResult(res));
   }, [keyword]);
-  useEffect(() => {
-    document.getElementsByClassName("App")[0].scrollTo({ top: 0 });
-  }, []);
+
   return (
     <div className="search-result-page">
       <CommonHeader />
