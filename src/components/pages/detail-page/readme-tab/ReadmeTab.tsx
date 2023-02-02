@@ -1,6 +1,11 @@
+import { IModule } from "../../../../const";
 import "./ReadmeTab.scss";
 
-const ReadmeTab = () => {
+interface Props {
+  module?: IModule;
+}
+
+const ReadmeTab = ({ module }: Props) => {
   return (
     <div className="readme-tab">
       <div className="readme-area"></div>
@@ -12,27 +17,29 @@ const ReadmeTab = () => {
         </div>
         <div className="info">
           <i className="license" />
-          <span>MIT License</span>
+          <span>{module?.license}</span>
         </div>
         <span className="title">Install</span>
         <span className="install-guide">
           Add the following line to your Move.toml:
         </span>
-        <div className="guide-container">django = ‘3.3.0’</div>
+        <div className="guide-container">
+          {module?.moduleName} = ‘{module?.version}’
+        </div>
         <span className="title">Aptos address</span>
         <div className="info">
           <i className="aptos" />
-          <span className="underline">0x777...........................dbb</span>
+          <span className="underline">{module?.aptosAddress}</span>
         </div>
         <span className="title">Repository</span>
         <div className="info">
           <i className="github" />
-          <span className="underline">github.com/django/django</span>
+          <span className="underline">{module?.githubURI}</span>
         </div>
         <span className="title">Owners</span>
         <div className="info">
           <i className="github" />
-          <span>Axe Lee</span>
+          <span>{module?.author}</span>
         </div>
       </div>
     </div>

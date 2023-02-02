@@ -1,17 +1,27 @@
 import { useNavigate } from "react-router-dom";
+import { IModule } from "../../const";
 import "./SearchResultThumb.scss";
 
-interface Props {}
+interface Props {
+  module: IModule;
+}
 
-const SearchResultThumb = ({}: Props) => {
+const SearchResultThumb = ({ module }: Props) => {
   const navigate = useNavigate();
   const hashtagList = ["io", "network", "socket"];
   return (
-    <div className="search-result-thumb" onClick={() => navigate("/django")}>
+    <div
+      className="search-result-thumb"
+      onClick={() =>
+        navigate(
+          `/package?address=${module.aptosAddress}&name=${module.moduleName}`
+        )
+      }
+    >
       <div className="tag" />
       <div className="left">
-        <span className="title">django</span>
-        <span className="version">v3.3</span>
+        <span className="title">{module.moduleName}</span>
+        <span className="version">{module.version}</span>
         <span className="description">
           Utilities for handling networking sockets with a maximal amount of
           configuration possible intended.

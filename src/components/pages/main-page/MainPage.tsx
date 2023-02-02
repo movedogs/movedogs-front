@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import MainPageHeader from "../../main-page-header/MainPageHeader";
 import PackageThumb from "../../package-thumb/PackageThumb";
 import "./MainPage.scss";
+import axios from "axios";
+import { BACKEND_URL, IModule } from "../../../const";
 
 const MainPage = () => {
-  const recentReleaseList: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
-  const mostPopularList: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  const [recentReleaseList, setRecentReleaseList] = useState<IModule[]>([]);
+  const [popularList, setPopularList] = useState<IModule[]>([]);
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/module/recent`)
+      .then((res) => setRecentReleaseList(res.data));
+    axios
+      .get(`${BACKEND_URL}/module/popular`)
+      .then((res) => setPopularList(res.data));
+  }, []);
+
   return (
     <div className="main-page">
       <MainPageHeader />
@@ -12,13 +24,16 @@ const MainPage = () => {
         <div className="list">
           <span className="title">Recent Release</span>
           {recentReleaseList.map((recentRelease) => (
-            <PackageThumb title={"django"} version={"v3.3"} />
+            <PackageThumb
+              key={recentRelease.aptosAddress}
+              module={recentRelease}
+            />
           ))}
         </div>
         <div className="list">
           <span className="title">Most Popular</span>
-          {mostPopularList.map((recentRelease) => (
-            <PackageThumb title={"django"} version={"v3.3"} />
+          {popularList.map((popular) => (
+            <PackageThumb key={popular.aptosAddress} module={popular} />
           ))}
         </div>
       </div>

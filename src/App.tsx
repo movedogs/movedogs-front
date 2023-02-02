@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="" element={<MainPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
-        <Route path="/:package" element={<DetailPage />} />
+        <Route path="/package" element={<DetailPage />} />
       </Routes>
       <Footer />
     </div>
