@@ -5,6 +5,7 @@ import { BACKEND_URL, hashtagList, IModule } from "../../../const";
 import { useQuery } from "../../../hooks/useQuery";
 import CommonHeader from "../../common-header/CommonHeader";
 import "./DetailPage.scss";
+import DocumentsTab from "./document-tab/DocumentsTab";
 import ReadmeTab from "./readme-tab/ReadmeTab";
 
 type Tabs = "Readme" | "Documents" | "Versions" | "Dependencies";
@@ -36,7 +37,7 @@ const DetailPage = () => {
           <span className="description">{module?.description}</span>
           <div className="hash-list">
             {hashtagList.map((hash) => (
-              <span>#{hash}</span>
+              <span key={hash}>#{hash}</span>
             ))}
           </div>
         </div>
@@ -51,7 +52,7 @@ const DetailPage = () => {
             className={`${selectedTab === "Documents" && "selected"}`}
             onClick={() => setSelectedTab("Documents")}
           >
-            Dcouments
+            Document
           </button>
           <button
             className={`${selectedTab === "Versions" && "selected"}`}
@@ -67,6 +68,7 @@ const DetailPage = () => {
           </button>
         </div>
         {selectedTab === "Readme" && <ReadmeTab module={module} />}
+        {selectedTab === "Documents" && <DocumentsTab module={module} />}
       </div>
     </div>
   );
