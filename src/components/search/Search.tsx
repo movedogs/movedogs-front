@@ -6,6 +6,9 @@ const Search = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const onSearch = () => {
+    if (!query) {
+      return;
+    }
     navigate(`/search/${query}`);
   };
   const onKeyDown = (e: any) => {
