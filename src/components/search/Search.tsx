@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Search.scss";
 
 const Search = () => {
+  const { keyword } = useParams();
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(keyword);
   const onSearch = () => {
     if (!query) {
       return;

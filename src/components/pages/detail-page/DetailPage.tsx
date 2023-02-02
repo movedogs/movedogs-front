@@ -33,10 +33,7 @@ const DetailPage = () => {
         <div className="header">
           <span className="name">{module?.moduleName}</span>
           <span className="version">{module?.version}</span>
-          <span className="description">
-            Utilities for handling networking sockets with a maximal amount of
-            configuration possible intended.
-          </span>
+          <span className="description">{module?.description}</span>
           <div className="hash-list">
             {hashtagList.map((hash) => (
               <span>#{hash}</span>

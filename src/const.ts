@@ -8,6 +8,7 @@ export interface IModule {
   license: string;
   author: string;
   timestamp: number;
+  description: string;
 }
 
 export const hashtagList = ["aptos", "move", "library"];

@@ -6,10 +6,15 @@
   > .readme-area {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 354px);
-    height: 844px;
+    width: calc(100% - 354px - 64px);
+    max-height: calc(844px - 60px);
     background: #f3f3f3;
     border-radius: 10px;
+    overflow-y: auto;
+    padding: 30px 32px;
+    a {
+      color: #2685ca;
+    }
   }
   > .module-info-area {
     display: flex;
@@ -30,7 +35,9 @@
     > .info {
       display: flex;
       flex-direction: row;
+      align-items: center;
       margin-top: 10px;
+      text-align: left;
       > i {
         width: 20px;
         height: 20px;
@@ -52,8 +59,10 @@
         }
       }
       > span {
+        max-width: 233px;
         font-size: 16px;
         font-family: "appleSDL";
+        line-break: anywhere;
         &.underline {
           text-decoration-line: underline;
         }
@@ -69,13 +78,16 @@
       align-items: center;
 
       width: calc(100% - 9px);
-      height: 48px;
+      min-height: 48px;
+      padding: 13px 0;
       background: #ffffff;
       padding-left: 9px;
 
       font-size: 16px;
       font-family: "appleSDH";
       margin-top: 6px;
+
+      cursor: pointer;
     }
   }
 }
