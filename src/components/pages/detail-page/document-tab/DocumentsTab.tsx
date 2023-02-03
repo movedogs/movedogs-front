@@ -14,11 +14,18 @@ interface Props {
 const DocumentsTab = ({ module }: Props) => {
   const [document, setDocument] = useState("");
   const getMdFile = async () => {
-    const document = (
+    // const _document = (
+    //   await axios.get(
+    //     `${BACKEND_URL}/document/${module?.moduleName}%2B0${module?.aptosAddress}`
+    //   )
+    // ).data;
+    // setDocument(_document);
+    const md = (
       await axios.get(
-        `${BACKEND_URL}/document?documentId=${module?.moduleName}+${module?.aptosAddress}`
+        `https://movedogs-md.s3.amazonaws.com/${module?.moduleName}%2B${module?.aptosAddress}.md`
       )
     ).data;
+    setDocument(md);
   };
   useEffect(() => {
     getMdFile();
