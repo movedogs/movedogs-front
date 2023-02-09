@@ -5,7 +5,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeRaw from "rehype-raw";
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import { IModule } from "../../../../const";
+import { BACKEND_URL, IModule } from "../../../../const";
 import "./ReadmeTab.scss";
 import { getTimeSince } from "../../../../utii";
 
@@ -15,6 +15,7 @@ interface Props {
 
 const ReadmeTab = ({ module }: Props) => {
   const [readmeText, setReadmeText] = useState("");
+  const [authors, setAuthors] = useState<string[]>([]);
   const updateReadmeText = async (_module: IModule) => {
     try {
       const masterReadmeText = (
@@ -43,11 +44,22 @@ const ReadmeTab = ({ module }: Props) => {
     } catch (e) {}
   };
 
+  const getAuthorInfo = async (module: IModule) => {
+    const _authors = (
+      await axios.get(
+        `${BACKEND_URL}/module/author?name=${module?.moduleName}&pac=${module?.packageName}`
+      )
+    ).data;
+    setAuthors(_authors);
+  };
+
   useEffect(() => {
     if (module) {
       updateReadmeText(module);
+      getAuthorInfo(module);
     }
   }, [module]);
+
   return (
     <div className="readme-tab">
       <div className="readme-area">
@@ -118,21 +130,25 @@ const ReadmeTab = ({ module }: Props) => {
         >
           {module?.moduleName} = ‘{module?.version}’
         </div>
-        <span className="title">Aptos address</span>
+        {/* <span className="title">Aptos address</span>
         <button className="info">
           <i className="aptos" />
-          <span className="underline">{module?.aptosAddress}</span>
-        </button>
+          <span className="underline">{module?.packageName}</span>
+        </button> */}
         <span className="title">Repository</span>
         <button className="info" onClick={() => window.open(module?.githubURI)}>
           <i className="github" />
           <span className="underline">{module?.githubURI}</span>
         </button>
         <span className="title">Owners</span>
-        <div className="info">
-          <i className="github" />
-          <span>{module?.author}</span>
-        </div>
+        {authors.map((author) => {
+          return (
+            <div className="info">
+              <i className="github" />
+              <span>{author}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

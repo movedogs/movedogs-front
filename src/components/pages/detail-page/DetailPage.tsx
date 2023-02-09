@@ -21,7 +21,9 @@ const DetailPage = () => {
     } else {
       axios
         .get(`${BACKEND_URL}/module/?address=${address}&name=${name}`)
-        .then((res) => setModule(res.data[0]));
+        .then((res) => {
+          setModule(res.data[0]);
+        });
     }
   }, [query]);
 
@@ -32,7 +34,7 @@ const DetailPage = () => {
       <CommonHeader />
       <div className="contents">
         <div className="header">
-          <span className="name">{module?.moduleName}</span>
+          <span className="name">{module?.packageName}</span>
           <span className="version">{module?.version}</span>
           <span className="description">{module?.description}</span>
           <div className="hash-list">

@@ -24,7 +24,7 @@ const SearchResultPage = () => {
       if (
         !nameMatches.find(
           (nameMatch: IModule) =>
-            nameMatch.aptosAddress === addressMatch.aptosAddress &&
+            nameMatch.packageName === addressMatch.packageName &&
             nameMatch.moduleName === addressMatch.moduleName
         )
       ) {

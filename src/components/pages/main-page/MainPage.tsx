@@ -25,7 +25,7 @@ const MainPage = () => {
           <span className="title">Recent Release</span>
           {recentReleaseList.map((recentRelease) => (
             <PackageThumb
-              key={recentRelease.aptosAddress}
+              key={recentRelease.packageName}
               module={recentRelease}
             />
           ))}
@@ -33,7 +33,7 @@ const MainPage = () => {
         <div className="list">
           <span className="title">Most Popular</span>
           {popularList.map((popular) => (
-            <PackageThumb key={popular.aptosAddress} module={popular} />
+            <PackageThumb key={popular.packageName} module={popular} />
           ))}
         </div>
       </div>

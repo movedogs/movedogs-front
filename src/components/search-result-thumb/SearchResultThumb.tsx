@@ -14,7 +14,7 @@ const SearchResultThumb = ({ module }: Props) => {
       className="search-result-thumb"
       onClick={() =>
         navigate(
-          `/package?address=${module.aptosAddress}&name=${module.moduleName}`
+          `/package?address=${module.packageName}&name=${module.moduleName}`
         )
       }
     >

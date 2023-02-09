@@ -10,7 +10,7 @@ const PackageThumb = ({ module }: Props) => {
   const navigate = useNavigate();
   const onClick = () => {
     navigate(
-      `/package?address=${module.aptosAddress}&name=${module.moduleName}`
+      `/package?address=${module.packageName}&name=${module.moduleName}`
     );
   };
   return (
