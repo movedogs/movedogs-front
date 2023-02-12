@@ -5,23 +5,24 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeRaw from "rehype-raw";
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import { BACKEND_URL, IModule } from "../../../../const";
+import {BACKEND_URL, IPackage} from "../../../../const";
 import "./ReadmeTab.scss";
 import { getTimeSince } from "../../../../utii";
 
 interface Props {
-  module?: IModule;
+  pac?: IPackage;
 }
 
-const ReadmeTab = ({ module }: Props) => {
+const ReadmeTab = ({ pac }: Props) => {
   const [readmeText, setReadmeText] = useState("");
   const [authors, setAuthors] = useState<string[]>([]);
-  const updateReadmeText = async (_module: IModule) => {
+  const [modules, setModules] = useState<string[]>([]);
+  const updateReadmeText = async (_pac: IPackage) => {
     try {
       const masterReadmeText = (
         await axios.get(
           `https://raw.githubusercontent.com/${
-            _module?.githubURI.split("github.com/")[1]
+            _pac?.githubURI.split("github.com/")[1]
           }/master/README.md`
         )
       ).data;
@@ -30,7 +31,7 @@ const ReadmeTab = ({ module }: Props) => {
       const mainReadmeText = (
         await axios.get(
           `https://raw.githubusercontent.com/${
-            _module?.githubURI.split("github.com/")[1]
+            _pac?.githubURI.split("github.com/")[1]
           }/main/README.md`
         )
       ).data;
@@ -44,21 +45,31 @@ const ReadmeTab = ({ module }: Props) => {
     } catch (e) {}
   };
 
-  const getAuthorInfo = async (module: IModule) => {
+  const getAuthorInfo = async (pac: IPackage) => {
     const _authors = (
       await axios.get(
-        `${BACKEND_URL}/module/author?name=${module?.moduleName}&pac=${module?.packageName}`
+        `${BACKEND_URL}/package/author?packageName=${pac?.packageName}`
       )
     ).data;
     setAuthors(_authors);
   };
 
+  const getModuleInfo = async (pac: IPackage) => {
+    const _modules = (
+        await axios.get(
+            `${BACKEND_URL}/package/module?packageName=${pac?.packageName}`
+        )
+    ).data;
+    setModules(_modules);
+  };
+
   useEffect(() => {
-    if (module) {
-      updateReadmeText(module);
-      getAuthorInfo(module);
+    if (pac) {
+      updateReadmeText(pac);
+      getAuthorInfo(pac);
+      getAuthorInfo(pac);
     }
-  }, [module]);
+  }, [pac]);
 
   return (
     <div className="readme-tab">
@@ -114,11 +125,11 @@ const ReadmeTab = ({ module }: Props) => {
         <span className="title">Metadata</span>
         <div className="info">
           <i className="calender" />
-          <span>{getTimeSince(module?.timestamp ?? 0)}</span>
+          <span>{getTimeSince(pac?.timestamp ?? 0)}</span>
         </div>
         <div className="info">
           <i className="license" />
-          <span>{module?.license}</span>
+          <span>{pac?.license}</span>
         </div>
         <span className="title">Install</span>
         <span className="install-guide">
@@ -126,9 +137,9 @@ const ReadmeTab = ({ module }: Props) => {
         </span>
         <div
           className="guide-container"
-          onClick={() => copy(`${module?.moduleName} = ‘${module?.version}’`)}
+          onClick={() => copy(`${pac?.packageName} = ‘${pac?.version}’`)}
         >
-          {module?.moduleName} = ‘{module?.version}’
+          {pac?.packageName} = ‘{pac?.version}’
         </div>
         {/* <span className="title">Aptos address</span>
         <button className="info">
@@ -136,9 +147,9 @@ const ReadmeTab = ({ module }: Props) => {
           <span className="underline">{module?.packageName}</span>
         </button> */}
         <span className="title">Repository</span>
-        <button className="info" onClick={() => window.open(module?.githubURI)}>
+        <button className="info" onClick={() => window.open(pac?.githubURI)}>
           <i className="github" />
-          <span className="underline">{module?.githubURI}</span>
+          <span className="underline">{pac?.githubURI}</span>
         </button>
         <span className="title">Owners</span>
         {authors.map((author) => {

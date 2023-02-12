@@ -1,24 +1,24 @@
-import { useNavigate } from "react-router-dom";
-import { IModule } from "../../const";
+import {useNavigate} from "react-router-dom";
+import {IPackage} from "../../const";
 import "./PackageThumb.scss";
 
 interface Props {
-  module: IModule;
+    pac: IPackage;
 }
 
-const PackageThumb = ({ module }: Props) => {
+const PackageThumb = ({ pac }: Props) => {
   const navigate = useNavigate();
   const onClick = () => {
     navigate(
-      `/package?address=${module.packageName}&name=${module.moduleName}`
+      `/package?packageName=${pac.packageName}`
     );
   };
   return (
     <div className="package-thumb" onClick={onClick}>
       <div className="tag" />
       <div className="text-container">
-        <span className="title">{module.moduleName}</span>
-        <span className="version">{module.version}</span>
+        <span className="title">{pac.packageName}</span>
+        <span className="version">{pac.version}</span>
       </div>
       <i className="right-arrow" />
     </div>

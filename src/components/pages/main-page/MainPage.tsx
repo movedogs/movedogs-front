@@ -3,17 +3,17 @@ import MainPageHeader from "../../main-page-header/MainPageHeader";
 import PackageThumb from "../../package-thumb/PackageThumb";
 import "./MainPage.scss";
 import axios from "axios";
-import { BACKEND_URL, IModule } from "../../../const";
+import {BACKEND_URL, IPackage} from "../../../const";
 
 const MainPage = () => {
-  const [recentReleaseList, setRecentReleaseList] = useState<IModule[]>([]);
-  const [popularList, setPopularList] = useState<IModule[]>([]);
+  const [recentReleaseList, setRecentReleaseList] = useState<IPackage[]>([]);
+  const [popularList, setPopularList] = useState<IPackage[]>([]);
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/module/recent`)
+      .get(`${BACKEND_URL}/package/recent`)
       .then((res) => setRecentReleaseList(res.data));
     axios
-      .get(`${BACKEND_URL}/module/popular`)
+      .get(`${BACKEND_URL}/package/popular`)
       .then((res) => setPopularList(res.data));
   }, []);
 
@@ -26,14 +26,14 @@ const MainPage = () => {
           {recentReleaseList.map((recentRelease) => (
             <PackageThumb
               key={recentRelease.packageName}
-              module={recentRelease}
+              pac={recentRelease}
             />
           ))}
         </div>
         <div className="list">
           <span className="title">Most Popular</span>
           {popularList.map((popular) => (
-            <PackageThumb key={popular.packageName} module={popular} />
+            <PackageThumb key={popular.packageName} pac={popular} />
           ))}
         </div>
       </div>
