@@ -1,28 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { hashtagList, IModule } from "../../const";
+import {hashtagList, IModule, IPackage} from "../../const";
 import { getTimeSince } from "../../utii";
 import "./SearchResultThumb.scss";
 
 interface Props {
-  module: IModule;
+  pac: IPackage;
 }
 
-const SearchResultThumb = ({ module }: Props) => {
+const SearchResultThumb = ({ pac }: Props) => {
   const navigate = useNavigate();
   return (
     <div
       className="search-result-thumb"
       onClick={() =>
         navigate(
-          `/package?address=${module.packageName}&name=${module.moduleName}`
+          `/package?packageName=${pac.packageName}`
         )
       }
     >
       <div className="tag" />
       <div className="left">
-        <span className="title">{module.moduleName}</span>
-        <span className="version">{module.version}</span>
-        <span className="description">{module.description}</span>
+        <span className="title">{pac.packageName}</span>
+        <span className="version">{pac.version}</span>
+        <span className="description">{pac.description}</span>
         <div className="hash-list">
           {hashtagList.map((hash) => (
             <span>#{hash}</span>
@@ -30,7 +30,7 @@ const SearchResultThumb = ({ module }: Props) => {
         </div>
       </div>
       <div className="right">
-        <span>{getTimeSince(module.timestamp)}</span>
+        <span>{getTimeSince(pac.timestamp)}</span>
         <i className="right-arrow" />
       </div>
     </div>

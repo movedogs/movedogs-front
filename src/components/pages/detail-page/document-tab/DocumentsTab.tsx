@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BACKEND_URL, IModule, IPackage } from "../../../../const";
+import {BACKEND_URL, IModule, IPackage} from "../../../../const";
 import "./DocumentsTab.scss";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -9,26 +9,26 @@ import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 import PackageElement from "../../../package-thumb/PackageElement";
 
 interface Props {
-  module: IModule | undefined;
+  pac: IPackage | undefined;
 }
 
-const DocumentsTab = ({ module }: Props) => {
+const DocumentsTab = ({ pac }: Props) => {
   const [document, setDocument] = useState("");
-  const [selectedPackage, setSelectedPackage] = useState<IPackage>();
-  const [packageList, setPackageList] = useState<IPackage[]>([]);
-  const getMdFile = async (_package: IPackage) => {
+  const [selectedModule, setSelectedModule] = useState<string>();
+  const [moduleList, setModuleList] = useState<string[]>([]);
+  const getMdFile = async (_module: string) => {
     const md = (
       await axios.get(
-        `https://movedogs-md.s3.amazonaws.com/${_package?.moduleName}%2B${_package?.packageName}.md`
+        `https://movedogs-md.s3.amazonaws.com/${pac?.packageName}%2B${_module}.md`
       )
     ).data;
     setDocument(md);
   };
 
-  const getPackageList = async () => {
+  const getModuleList = async () => {
     const list = (
       await axios.get(
-        `${BACKEND_URL}/module/dependency?name=${module?.moduleName}&pac=${module?.packageName}`
+        `${BACKEND_URL}/package/module?packageName=${pac?.packageName}`
       )
     ).data;
     // const list = (
@@ -36,17 +36,17 @@ const DocumentsTab = ({ module }: Props) => {
     //     `${BACKEND_URL}/module/dependency?name=${"example_module"}&pac=${"sample_pac"}`
     //   )
     // ).data;
-    setPackageList(list);
+    setModuleList(list);
   };
   useEffect(() => {
-    getPackageList();
+    getModuleList();
   }, []);
 
   useEffect(() => {
-    if (selectedPackage) {
-      getMdFile(selectedPackage);
+    if (selectedModule) {
+      getMdFile(selectedModule);
     }
-  }, [selectedPackage]);
+  }, [selectedModule]);
 
   return (
     <div className={`document-tab ${document ? "md" : "list"}`}>
@@ -100,10 +100,10 @@ const DocumentsTab = ({ module }: Props) => {
           ></ReactMarkdown>
         </div>
       ) : (
-        packageList.map((_package) => (
+        moduleList.map((_module) => (
           <PackageElement
-            onClick={() => setSelectedPackage(_package)}
-            title={_package.packageName}
+            onClick={() => setSelectedModule(_module)}
+            title={_module}
           />
         ))
       )}

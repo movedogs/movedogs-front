@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { BACKEND_URL, hashtagList, IModule } from "../../../const";
-import { useQuery } from "../../../hooks/useQuery";
+import {useEffect, useState} from "react";
+import {BACKEND_URL, hashtagList, IPackage} from "../../../const";
+import {useQuery} from "../../../hooks/useQuery";
 import CommonHeader from "../../common-header/CommonHeader";
 import "./DetailPage.scss";
 import DocumentsTab from "./document-tab/DocumentsTab";
@@ -12,17 +11,16 @@ type Tabs = "Readme" | "Documents" | "Versions" | "Dependencies";
 
 const DetailPage = () => {
   const query = useQuery();
-  const [module, setModule] = useState<IModule>();
+  const [pac, setPac] = useState<IPackage>();
   useEffect(() => {
-    const address = query.get("address");
-    const name = query.get("name");
-    if (!address || !name) {
+    const packageName = query.get("packageName");
+    if (!packageName) {
       alert("module not found");
     } else {
       axios
-        .get(`${BACKEND_URL}/module/?address=${address}&name=${name}`)
+        .get(`${BACKEND_URL}/package/?packageName=${packageName}`)
         .then((res) => {
-          setModule(res.data[0]);
+          setPac(res.data[0]);
         });
     }
   }, [query]);
@@ -34,9 +32,9 @@ const DetailPage = () => {
       <CommonHeader />
       <div className="contents">
         <div className="header">
-          <span className="name">{module?.packageName}</span>
-          <span className="version">{module?.version}</span>
-          <span className="description">{module?.description}</span>
+          <span className="name">{pac?.packageName}</span>
+          <span className="version">{pac?.version}</span>
+          <span className="description">{pac?.description}</span>
           <div className="hash-list">
             {hashtagList.map((hash) => (
               <span key={hash}>#{hash}</span>
@@ -58,19 +56,19 @@ const DetailPage = () => {
           </button>
           <button
             className={`${selectedTab === "Versions" && "selected"}`}
-            onClick={() => setSelectedTab("Versions")}
+            onClick={() => alert("Will be updated soon")}
           >
             Versions
           </button>
           <button
             className={`${selectedTab === "Dependencies" && "selected"}`}
-            onClick={() => setSelectedTab("Dependencies")}
+            onClick={() => alert("Will be updated soon")}
           >
             Dependencies
           </button>
         </div>
-        {selectedTab === "Readme" && <ReadmeTab module={module} />}
-        {selectedTab === "Documents" && <DocumentsTab module={module} />}
+        {selectedTab === "Readme" && <ReadmeTab pac={pac} />}
+        {selectedTab === "Documents" && <DocumentsTab pac={pac} />}
       </div>
     </div>
   );
